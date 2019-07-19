@@ -8,5 +8,5 @@ before_install:
   - gem install hiptest-publisher
   - hiptest-publisher -c hiptest-publisher.conf --only=tests --test-run-id=135450
 
-after_install:
+after_script:
   - hiptest-publisher -c hiptest-publisher.conf --push="nosetests.xml" --test-run-id=135450
