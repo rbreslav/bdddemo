@@ -12,4 +12,5 @@ script:
   - ./node_modules/jasmine-xml-reporter/bin/jasmine.js --junitreport
 
 after_script:
+  - cat results.xml
   - hiptest-publisher -c hiptest-publisher.conf --push="results.xml" --push-format=junit --test-run-id=135450
