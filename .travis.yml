@@ -9,4 +9,4 @@ before_install:
   - hiptest-publisher -c hiptest-publisher.conf --only=tests --test-run-id=135450
 
 after_script:
-  - hiptest-publisher -c hiptest-publisher.conf --push="nosetests.xml" --test-run-id=135450
+  - hiptest-publisher -c hiptest-publisher.conf --push="_build/test-reports/jasmine/TEST-*.xml" --test-run-id=135450
