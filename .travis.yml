@@ -8,5 +8,8 @@ before_install:
   - gem install hiptest-publisher
   - hiptest-publisher -c hiptest-publisher.conf --only=tests --test-run-id=135450
 
+script:
+  - ./node_modules/jasmine-xml-reporter/bin/jasmine.js --junitreport
+
 after_script:
-  - hiptest-publisher -c hiptest-publisher.conf --push="_build/test-reports/jasmine/TEST-*.xml" --test-run-id=135450
+  - hiptest-publisher -c hiptest-publisher.conf --push="results.xml" --test-run-id=135450
