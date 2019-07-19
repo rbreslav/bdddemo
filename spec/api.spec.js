@@ -15,7 +15,7 @@ describe('API Tests', () => {
 
         response.then((result) => {
             console.log(result);
-            expect(result.output).toBe('SomeOutputs');
+            expect(result.output).toBe('SomeOutput');
             done();
         }).catch((err) => {
             console.log(err);
