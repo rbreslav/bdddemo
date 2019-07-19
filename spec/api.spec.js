@@ -1,24 +1,30 @@
 const LambdaTester = require('lambda-tester');
 const apiHandler = require('../api-handler');
 
-describe('API Tests', () => {
-    it('Valid Request', async (done) => {
-        let response =
-            new Promise((resolve, reject) => {
-                LambdaTester(apiHandler)
-                    .event({ input: 'SomeInput'})
-                    .expectResolve((result, additonal) => {
-                        resolve(JSON.parse(result.body));
-                    });
+describe('BDD Demo', () => {
+    describe('Valid API Request', () => {
+
+        function validApiRequest(inputData) {
+            let response =
+                new Promise((resolve, reject) => {
+                    LambdaTester(apiHandler)
+                        .event({ input: inputData})
+                        .expectResolve((result, additonal) => {
+                            resolve(JSON.parse(result.body));
+                        });
+                });
+
+            response.then((result) => {
+                console.log(result);
+                expect(result.output).toBe('SomeOutput');
+            }).catch((err) => {
+                console.log(err);
             });
+        }
 
-
-        response.then((result) => {
-            console.log(result);
-            expect(result.output).toBe('SomeOutput');
+        it('Basic Request', async (done) => {
+            validApiRequest.apply(this, ['SomeInput']);
             done();
-        }).catch((err) => {
-            console.log(err);
-        });
-    }, 600000)
+        }, 600000)
+    });
 });
