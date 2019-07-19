@@ -6,11 +6,11 @@ before_install:
   - rvm install 2.2
   - rvm use 2.2
   - gem install hiptest-publisher
-  - hiptest-publisher --config=hiptest-publisher.conf --test-run-id=135450 --without=actionwords
+  - hiptest-publisher --config=hiptest-publisher.conf --test-run-id=135450 --without=actionwords --tests-only
 
 script:
   - ./node_modules/jasmine-xml-reporter/bin/jasmine.js --junitreport
 
 after_script:
   - cat results.xml
-  - hiptest-publisher -c hiptest-publisher.conf --push="results.xml" --push-format=junit --test-run-id=135450
+  - hiptest-publisher -c hiptest-publisher.conf --push="results.xml" --push-format=junit --test-run-id=135450 --tests-only
